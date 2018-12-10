@@ -1,7 +1,0 @@
-com\diogo\library\LibraryApiApp.class
-com\diogo\library\repository\BookRepository.class
-com\diogo\library\controller\BookController.class
-com\diogo\library\service\BookService.class
-com\diogo\library\controller\LibraryController.class
-com\diogo\library\dto\Book.class
-com\diogo\library\service\LibraryService.class
