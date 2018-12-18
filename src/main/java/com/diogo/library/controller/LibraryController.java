@@ -1,5 +1,7 @@
 package com.diogo.library.controller;
 
+import javax.servlet.http.HttpServletResponse;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestBody;
@@ -19,17 +21,19 @@ public class LibraryController {
 	private LibraryService libraryService;
 	
 	@RequestMapping(method=RequestMethod.POST, value = "/libraries")
-	public Library createLibrary(@RequestBody Library library) {
+	public Library createLibrary(@RequestBody Library library, HttpServletResponse response) {
+		response.setStatus(HttpServletResponse.SC_CREATED);
 		return libraryService.createLibrary(library);
 	}
 	
 	@RequestMapping(method=RequestMethod.POST, value = "/libraries/{id}/books")
-	public Library insertBook(@PathVariable Integer id, @RequestBody Book book) {
-		return libraryService.insertBook(id, book);
+	public void insertBook(@PathVariable Integer id, @RequestBody Book book, HttpServletResponse response) {
+		response.setStatus(HttpServletResponse.SC_CREATED);
+		libraryService.insertBook(id, book);
 	}
 
 	@RequestMapping(method=RequestMethod.GET, value = "/libraries/{id}")
-	public Library getLibrary(@PathVariable Integer id) {
+	public Library getLibrary(@PathVariable Long id) {
 		return libraryService.getLibrary(id);
 	}
 	

@@ -1,5 +1,7 @@
 package com.diogo.library.controller;
 
+import javax.servlet.http.HttpServletResponse;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -17,7 +19,8 @@ public class BookController {
 	private BookService bookService;
 
 	@RequestMapping(method=RequestMethod.POST, value = "/books")
-	public Book createBook(@RequestBody Book book) {
+	public Book createBook(@RequestBody Book book, HttpServletResponse response) {
+		response.setStatus(HttpServletResponse.SC_CREATED);
 		return bookService.createBook(book);
 	}
 }
